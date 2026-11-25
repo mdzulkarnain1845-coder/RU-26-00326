@@ -11,7 +11,7 @@ def process_temperature_data(temps.csv):
 
     df.columns = df.columns.str.strip()
     
-    # Handle invalid data
+
     df['Temp_C_clean'] = pd.to_numeric(df['Temp_C'], errors='coerce')
     invalid_mask = df['Temp_C_clean'].isna() & df['Temp_C'].notna()
     for idx, row in df[invalid_mask].iterrows():
@@ -67,7 +67,7 @@ def process_temperature_data(temps.csv):
             print("\nTemperatures in Fahrenheit:")
             print(" | ".join([f"{val:.2f} F" for val in valid_data['Temp_F']]))
             
-            # Line Chart
+
             plt.figure(figsize=(8, 5))
             plt.plot(valid_data['Date'], valid_data['Temp_F'], marker='o', color='orange', linestyle='-', linewidth=2)
             plt.title('Temperature Data Analyzer (Fahrenheit)', fontsize=14)
@@ -76,7 +76,7 @@ def process_temperature_data(temps.csv):
             plt.grid(True)
             plt.show()
 
-            # Histogram
+
             plt.figure(figsize=(8, 5))
             plt.hist(valid_data['Temp_C_clean'], bins=5, color='skyblue', edgecolor='black')
             plt.title('Temperature Frequency (Histogram)', fontsize=14)
